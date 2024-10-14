@@ -16,7 +16,7 @@ app.secret_key = os.getenv('SECRET_KEY', 'default_secret_key')  # Provide a defa
 
 # MongoDB Configuration using environment variables
 uri = os.getenv('MONGO_URI')  # MongoDB connection string from environment variable
-client = MongoClient(uri)
+client = MongoClient(uri,maxPoolSize=50, connectTimeoutMS=5000)
 db = client.blog_app  # Your database name is 'blog_app'
 
 def generate_slug(title):
