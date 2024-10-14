@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - Flask App{% endblock %}
+
+{% block content %}
+<div class="container mx-auto py-8">
+    <div class="bg-gray-800 dark:bg-gray-800 rounded-lg shadow-md p-6">
+
+        <!-- Blog Post Title -->
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-4">{{ post.title }}</h1>
+        <div class="flex justify-between items-center mt-4">
+            <div class="flex items-center">
+                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80"
+                     class="w-8 h-8 object-cover rounded-full" alt="avatar">
+                <a class="text-white text-sm mx-3 hover:underline" href="#">Alex John</a>
+            </div>
+            <span class="font-light text-sm text-white">{{ post.created_at.strftime('%B %d, %Y') }}</span>
+        </div>
+
+        <!-- Blog Post Description -->
+        <p class="text-gray-600 dark:text-gray-300 mb-6">{{ post.description | safe }}</p>
+
+        <!-- Blog Post Full Content -->
+        <div class="text-gray-800 dark:text-gray-200">
+            {{ post.full_content | safe }}
+        </div>
+
+        <!-- Blog Post Category -->
+        <div class="mt-4">
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Category:</span>
+            <span class="ml-2 text-sm text-blue-600 dark:text-blue-500">{{ post.category }}</span>
+        </div>
+
+        <!-- Back to Blog Button with Icon -->
+        <a href="{{ url_for('blog') }}" class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700 mt-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Blog
+        </a>
+    </div>
+</div>
+{% endblock %}
